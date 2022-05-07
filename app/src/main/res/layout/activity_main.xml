@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/mainTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SmoochIt!"
+        app:layout_constraintBottom_toTopOf="@+id/smoochItImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/smoochItImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/capturedImageView"
+        android:layout_width="256dp"
+        android:layout_height="128dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/capturedImageView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/option1TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nine Hearts"
+                tools:layout_editor_absoluteX="59dp"
+                tools:layout_editor_absoluteY="309dp" />
+
+            <Switch
+                android:id="@+id/option1Switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                tools:layout_editor_absoluteX="286dp"
+                tools:layout_editor_absoluteY="301dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/option2TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shady Acres"
+                tools:layout_editor_absoluteX="57dp"
+                tools:layout_editor_absoluteY="356dp" />
+
+            <Switch
+                android:id="@+id/option2Switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                tools:layout_editor_absoluteX="286dp"
+                tools:layout_editor_absoluteY="352dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/option3TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mommy Dearest"
+                tools:layout_editor_absoluteX="57dp"
+                tools:layout_editor_absoluteY="406dp" />
+
+            <Switch
+                android:id="@+id/option3Switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                tools:layout_editor_absoluteX="286dp"
+                tools:layout_editor_absoluteY="406dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
