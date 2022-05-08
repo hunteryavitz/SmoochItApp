@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SmoochIt!"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/smoochItImageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -29,6 +30,7 @@
         android:id="@+id/capturedImageView"
         android:layout_width="256dp"
         android:layout_height="128dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -38,10 +40,34 @@
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/capturedImageView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/option4TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nine Hearts"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="57dp"
+                tools:layout_editor_absoluteY="406dp" />
+
+            <Switch
+                android:id="@+id/option4Switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                tools:layout_editor_absoluteX="286dp"
+                tools:layout_editor_absoluteY="406dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,7 +78,8 @@
                 android:id="@+id/option1TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nine Hearts"
+                android:text="99 Smooches"
+                android:textSize="18sp"
                 tools:layout_editor_absoluteX="59dp"
                 tools:layout_editor_absoluteY="309dp" />
 
@@ -77,6 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Shady Acres"
+                android:textSize="18sp"
                 tools:layout_editor_absoluteX="57dp"
                 tools:layout_editor_absoluteY="356dp" />
 
@@ -100,6 +128,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mommy Dearest"
+                android:textSize="18sp"
                 tools:layout_editor_absoluteX="57dp"
                 tools:layout_editor_absoluteY="406dp" />
 

@@ -3,18 +3,20 @@ package com.example.smoochit;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Base64;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Base64;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,10 +26,12 @@ public class MainActivity extends AppCompatActivity {
     private Switch option1Switch;
     private Switch option2Switch;
     private Switch option3Switch;
+    private Switch option4Switch;
 
     Toast toastOption1;
     Toast toastOption2;
     Toast toastOption3;
+    Toast toastOption4;
 
     String action;
     String type;
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int SELECT_IMAGE = 100;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         init();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void init() {
 
         capturedImageView = (ImageView) findViewById(R.id.capturedImageView);
@@ -57,25 +63,30 @@ public class MainActivity extends AppCompatActivity {
         TextView option1TextView = (TextView) findViewById(R.id.option1TextView);
         TextView option2TextView = (TextView) findViewById(R.id.option2TextView);
         TextView option3TextView = (TextView) findViewById(R.id.option3TextView);
+        TextView option4TextView = (TextView) findViewById(R.id.option4TextView);
 
         option1Switch = (Switch) findViewById(R.id.option1Switch);
         option2Switch = (Switch) findViewById(R.id.option2Switch);
         option3Switch = (Switch) findViewById(R.id.option3Switch);
+        option4Switch = (Switch) findViewById(R.id.option4Switch);
 
         toastOption1 = Toast.makeText(getApplicationContext(), "image sent to " + option1TextView.getText(), Toast.LENGTH_SHORT);
         toastOption2 = Toast.makeText(getApplicationContext(), "image sent to " + option2TextView.getText(), Toast.LENGTH_SHORT);
-        toastOption3= Toast.makeText(getApplicationContext(), "image sent to " + option3TextView.getText(), Toast.LENGTH_SHORT);
+        toastOption3 = Toast.makeText(getApplicationContext(), "image sent to " + option3TextView.getText(), Toast.LENGTH_SHORT);
+        toastOption4 = Toast.makeText(getApplicationContext(), "image sent to " + option4TextView.getText(), Toast.LENGTH_SHORT);
 
-        option1Switch.setChecked(true);
-        option2Switch.setChecked(true);
-        option3Switch.setChecked(true);
+        option1Switch.setChecked(false);
+        option2Switch.setChecked(false);
+        option3Switch.setChecked(false);
+        option4Switch.setChecked(false);
 
         capturedImageView.setOnClickListener(v -> {
             addImageFromGallery();
         });
+
         smoochItImageView.setOnClickListener(v -> {
-            if (option1Switch.isChecked() || option2Switch.isChecked() || option3Switch.isChecked()) {
-                sendEmailPre(option1Switch.isChecked(), option2Switch.isChecked(), option3Switch.isChecked());
+            if (option1Switch.isChecked() || option2Switch.isChecked() || option3Switch.isChecked() || option4Switch.isChecked()) {
+                sendEmailPre(option1Switch.isChecked(), option2Switch.isChecked(), option3Switch.isChecked(), option4Switch.isChecked());
             }
         });
 
@@ -99,19 +110,22 @@ public class MainActivity extends AppCompatActivity {
         option1Switch.setEnabled(false);
         option2Switch.setEnabled(false);
         option3Switch.setEnabled(false);
+        option4Switch.setEnabled(false);
 
         smoochItImageView.setEnabled(false);
     }
 
     private void enableViews() {
         option1Switch.setEnabled(true);
-        option2Switch.setEnabled(true);
-        option3Switch.setEnabled(true);
+//        option2Switch.setEnabled(true);
+//        option3Switch.setEnabled(true);
+//        option4Switch.setEnabled(true);
 
         smoochItImageView.setEnabled(true);
     }
 
-    private void sendEmailPre(boolean option1Checked, boolean option2Checked, boolean option3Checked) {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void sendEmailPre(boolean option1Checked, boolean option2Checked, boolean option3Checked, boolean option4Checked) {
 
         Thread thread = new Thread(this::sendEmailPost);
         thread.start();
@@ -127,8 +141,13 @@ public class MainActivity extends AppCompatActivity {
         if (option3Checked) {
             toastOption3.show();
         }
+
+        if (option4Checked) {
+            toastOption4.show();
+        }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     protected void sendEmailPost() {
 
         PostImageRequest postImageRequest = null;
@@ -142,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
         postImageRequest.postCall();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private String encodeImageBase64(Intent intent) {
 
         String encodedBase64Image = null;
@@ -154,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
             bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
             byte[] bytes=byteArrayOutputStream.toByteArray();
 
-            encodedBase64Image = Base64.encodeToString(bytes,Base64.DEFAULT);
+            encodedBase64Image = Base64.getEncoder().encodeToString(bytes);
 
         } catch (IOException e) {
 
